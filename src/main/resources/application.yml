@@ -1,1 +1,14 @@
+server:
+  port: 1998
 
+spring:
+  application:
+    name: video
+  datasource:
+    url: jdbc:mysql://124.220.185.228:3306/video
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+#mybatis:
+#  config-location: classpath:Mapper/*.xml
