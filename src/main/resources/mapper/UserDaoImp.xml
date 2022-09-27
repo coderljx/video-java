@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.Dao.UserDao">
+
+
+    <select id="queryFormUserByid" resultType="com.example.Pojo.User">
+        SELECT id,NAME FROM `user` WHERE id = #{userid} AND is_delete = 0
+    </select>
+    <select id="queryUserFormIdAndToken" resultType="java.lang.Integer">
+        SELECT count(1) FROM app_user WHERE userid = ${userid}  AND appid = ${appid} AND token = ${token}
+    </select>
+</mapper>

@@ -3,7 +3,7 @@ package com.example.Utils;
 public enum Coco {
 
 
-
+    nuli("",0),
     ok("Success", 200);
 
 
