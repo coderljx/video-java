@@ -15,6 +15,13 @@ public interface UserDao {
      */
     public User queryFormUserByid(Integer userid);
 
+    /**
+     * 验证用户的token和其他信息是否真实存在
+     * @param userid
+     * @param appid
+     * @param token
+     * @return
+     */
     public int queryUserFormIdAndToken(Integer userid,Integer appid,String token);
 
     

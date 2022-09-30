@@ -1,5 +1,7 @@
 package com.example.Exception;
 
+import com.example.Utils.StringHelper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,10 +18,14 @@ public class Read {
 
     public static String readData(String value) {
         String c = "";
-        String co = read("E00001.00001");
-        int i = co.indexOf("<");
-        int s = co.indexOf(">");
-        c = co.substring(0, i + 1) + value + co.substring(s);
+        if (StringHelper.isAotu(value,"E00001.00001")) {
+            String co = read("E00001.00001");
+            int i = co.indexOf("<");
+            int s = co.indexOf(">");
+            c = co.substring(0, i + 1) + value + co.substring(s);
+        }else {
+            c = read(value);
+        }
         return c;
     }
 

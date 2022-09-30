@@ -1,6 +1,8 @@
 package com.example.Manager;
 
+import com.example.Api.User.UserVo;
 import com.example.Dao.UserDeatailDao;
+import com.example.Pojo.UserDetail;
 import com.example.Utils.Redis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,7 +45,22 @@ public class UserServiceManager {
      * @param create
      */
      public void addUserDetail(Integer userid,Integer roomid,Integer rootid,String create) {
-         userDeatailDao.addUserDetail(userid,roomid,rootid,create);
+         UserDetail userDetail = userDeatailDao.queryFormById(userid);
+         if (userDetail != null && userDetail.getId() > 0) {
+             userDeatailDao.updateUserDetail( (int) userDetail.getId(),roomid,rootid,create);
+         }else {
+             userDeatailDao.addUserDetail(userid,roomid,rootid,create);
+         }
+     }
+
+    /**
+     * 查询用户信息
+     * @param userid
+     * @return
+     */
+     public UserVo getUserDetail(Integer userid){
+         UserVo userDetail = userDeatailDao.getUserDetail(userid);
+         return userDetail;
      }
 
 

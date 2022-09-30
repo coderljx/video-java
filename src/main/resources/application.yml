@@ -3,11 +3,13 @@ server:
   servlet:
     context-path: /api
 
+
+
 spring:
   application:
     name: video
   datasource:
-    url: jdbc:mysql://124.220.185.228:3306/video
+    url: jdbc:mysql://124.220.185.228:3306/video?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -24,4 +26,8 @@ mybatis:
 
   ###############################
 redis.timeout: 30
-
+logging:
+  level:
+    com:
+      example:
+        Dao: debug

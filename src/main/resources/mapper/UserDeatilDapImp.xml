@@ -6,6 +6,27 @@
 
     <insert id="addUserDetail">
         INSERT INTO user_detail(create_date,create_by,userid,roomid,rootid)
-        VALUES(NOW(),${create},${userid},${roomid},${rootid})
+        VALUES(NOW(),#{create},#{userid},#{roomid},#{rootid})
     </insert>
+
+    <update id="updateUserDetail">
+        UPDATE user_detail SET
+        <if test="roomid != null"> roomid = #{roomid}, </if>
+        <if test="rootid != null"> rootid = #{rootid}, </if>
+        modify_by = #{create} , modify_date = NOW()
+    </update>
+
+    <select id="queryFormById" resultType="com.example.Pojo.UserDetail">
+        SELECT id FROM user_detail WHERE userid = #{userid} AND is_delete = 0
+    </select>
+
+
+    <select id="getUserDetail" resultType="com.example.Api.User.UserVo">
+        SELECT u.name username, r.name roomname,rm.name rootname
+        FROM user_detail de
+        LEFT JOIN root r ON r.id = de.rootid AND r.is_delete = 0
+        LEFT JOIN room rm ON rm.id = de.roomid AND rm.is_delete = 0
+        LEFT JOIN `user` u ON u.id = de.userid AND u.is_delete = 0
+        WHERE de.userid = #{userid}
+    </select>
 </mapper>
